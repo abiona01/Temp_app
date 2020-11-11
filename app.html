@@ -17,27 +17,64 @@
     <title>Tempearture converter</title>
     <style>
         body {
-            background-color:darkslategray;
+            background-color:#2f0310;
         }
         .down {
             margin-bottom: 50px;
+        }
+        h2 {
+            margin-bottom: 70px;
+        }
+        .celc {
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+        .bleh {
+            font-style: italic;
         }
     </style>
 </head>
 <body class>
     <div class="container center grey-text text-lighten-2">
-        <h2 class="center">Celsius to Fahrenheit Calculator</h2>
-        <h4 class="center down">Input a value</h4>
-        <p class="container white-text">
-           Degree celsius <br>
-            <input type="number" id="celc" onkeyup="convert('C')">
-            Degree fahrenheit <br>
-            <input type="number" id="fahr" onkeyup="convert('F')">
-        </p>
+        <h2 class="center">Temperature converter</h2>
+        <p class="bleh">Description: Converts temperature in celsius to temperature in fahrenheit, and vice-versa.</p>
+        <div class="container white-text celc" id="celsius">
+            <input type="number" placeholder="Degree in celsius...">
+        </div>
+        <div class="container white-text" id="fahrenheit">
+            <input type="number" placeholder="Degree in fahrenheit...">
+        </div>
     </div>
     <footer class="container center">
         <p class="white-text">Designed by Adewemimo 2020.</p>
     </footer>
+    <script>
+        const celsiusInput = document.querySelector('#celsius > Input');
+        const FahrenheitInput = document.querySelector('#fahrenheit > Input');
+        
+        function roundNum(num) {
+            return Math.round(num*100)/100;
+        }
+        
+        function celsiusToFahrenheit() {
+            const cTemp = parseFloat(celsiusInput.value);
+            const fTemp = (cTemp * (9/5)) + 32;
+            FahrenheitInput.value = roundNum(fTemp);
+        }
+        
+        function fahrenheitToCelsius () {
+            const fTemp = parseFloat(FahrenheitInput.value);
+            const cTemp = (fTemp - 32) * (5/9);
+            celsiusInput.value = roundNum(cTemp);
+        }
+        
+        function main() {
+            celsiusInput.addEventListener('input', celsiusToFahrenheit);
+            FahrenheitInput.addEventListener('input', fahrenheitToCelsius);
+        }
+        
+        main();
+    </script>
     <!-- Compiled and minified JavaScript -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
